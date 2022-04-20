@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookbook</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="d-flex justify-content-end">
+        {% if 'user_id' not in session %}
+        <div class="d-flex col-3 justify-content-around">
+            <a href="/loginpage" class="btn btn-primary" style="margin:4px; white-space: nowrap">Login</a>
+        </div>
+        {% else %}
+        <div class="d-flex col-3 justify-content-around">
+            <a href="/dashboard" class="btn btn-primary" style="margin:4px; white-space: nowrap">User Dashboard</a>
+            <a href="/logout" class="btn btn-info" style="margin:4px; white-space: nowrap">Logout</a>
+        </div>
+        {% endif %}
+    </nav>
+
+    <h2 class="text-primary text-center">Cookbook</h2>
+    <div class="col-5 mx-auto">
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </div>
+            </form>
+        </nav>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Recipe By</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td><a href='/show/{{recipe.id}}'>{{recipe.name}}</a></td>
+                        <td>
+                            {% for user in users %}
+                                {% if user.id == recipe.user_id %}
+                                    {{user.username}}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>{{recipe.vote}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        
+</body>
+</html>

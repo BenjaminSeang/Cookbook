@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="d-flex justify-content-end">
+        <div class="d-flex col-3 justify-content-around">
+            <a href="/" class="btn btn-primary" style="margin:4px; white-space: nowrap">Homepage</a>
+            <a href="/dashboard" class="btn btn-primary" style="margin:4px; white-space: nowrap">User Dashboard</a>
+            <a href="/logout" class="btn btn-info" style="margin:4px; white-space: nowrap">Logout</a>
+        </div>
+    </nav>
+
+    <form action="/update/recipe" method="post" class="col-6 p-4 my-4 bg-dark text-light mx-auto">
+        <h2 class="text-primary">Edit {{recipe.name}}</h2>
+        {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Error</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="d-flex justify-content-between col-12">
+            <input type="hidden" name="id" value={{recipe.id}}>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <textarea name="name"  cols="30" rows="1" class="form-control">{{recipe.name}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description"  cols="30" rows="5" class="form-control">{{recipe.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="instruction">Instruction:</label>
+                    <textarea name="instruction"  cols="30" rows="5" class="form-control">{{recipe.instruction}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea name="ingredients"  cols="30" rows="5" class="form-control">{{recipe.ingredients}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="difficulty">Difficulty:</label>
+                    <select name="difficulty" class="form-control">
+                        <option value="easy">easy</option>
+                        <option value="medium">medium</option>
+                        <option value="hard">hard</option>
+                    </select>
+                </div>
+                
+                <input type="submit" value="Update Recipe" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,8 +1,7 @@
 import pymysql.cursors
-# this class will give us an instance of a connection to our database
+# Establish connection to our db
 class MySQLConnection:
     def __init__(self, db):
-        # change the user and password as needed
         connection = pymysql.connect(host = 'localhost',
                                     user = 'root', 
                                     password = 'root', 
@@ -10,9 +9,9 @@ class MySQLConnection:
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
                                     autocommit = True)
-        # establish the connection to the database
         self.connection = connection
-    # the method to query the database
+
+    # a method for query our db
     def query_db(self, query, data=None):
         with self.connection.cursor() as cursor:
             try:
