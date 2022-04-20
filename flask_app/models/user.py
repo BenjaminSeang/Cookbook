@@ -5,11 +5,10 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 from flask import flash
 
 class User:
-    db_name = "recipes"
+    db_name = "cook_book"
     def __init__(self,data):
         self.id = data['id']
-        self.first_name = data['first_name']
-        self.last_name = data['last_name']
+        self.username = data['username']
         self.email = data['email']
         self.password = data['password']
         self.created_at = data['created_at']
@@ -17,7 +16,7 @@ class User:
 
     @classmethod
     def save(cls,data):
-        query = "INSERT INTO users (first_name,last_name,email,password) VALUES(%(first_name)s,%(last_name)s,%(email)s,%(password)s)"
+        query = "INSERT INTO users (username,email,password) VALUES(%(username)s,%(email)s,%(password)s)"
         return connectToMySQL(cls.db_name).query_db(query,data)
 
     @classmethod
@@ -52,13 +51,10 @@ class User:
             flash("Email already taken.","register")
             is_valid=False
         if not EMAIL_REGEX.match(user['email']):
-            flash("Invalid Email!!!","register")
+            flash("Invalid Email","register")
             is_valid=False
-        if len(user['first_name']) < 3:
-            flash("First name must be at least 3 characters","register")
-            is_valid= False
-        if len(user['last_name']) < 3:
-            flash("Last name must be at least 3 characters","register")
+        if len(user['username']) < 3:
+            flash("Username must be at least 3 characters","register")
             is_valid= False
         if len(user['password']) < 8:
             flash("Password must be at least 8 characters","register")
