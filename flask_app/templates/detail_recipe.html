@@ -34,13 +34,19 @@
                 {% endfor %}
             </h2>
             <br>
-            <p class="card-text">{{recipe.description}}</p>
-            <p class="card-text">{{recipe.instruction}}</p>
-            <p class="card-text">{{recipe.ingredients}}</p>
-            <p class="card-text">{{recipe.difficulty}}</p>
+            <p class="card-text">Description: {{recipe.description}}</p>
+            </br>
+            <p class="card-text">Instruction: {{recipe.instruction}}</p>
+            </br>
+            <p class="card-text">Ingredients: {{recipe.ingredients}}</p>
+            </br>
+            <p class="card-text">Difficulty: {{recipe.difficulty}}</p>
             <br>
+
             <p class="card-text">Do you like this recipe?</p>
             <a href="/vote/{{recipe.id}}" class="btn btn-primary" style="margin:4px; white-space: nowrap">Like!</a>
+
+           
         </div>
     </div>
 
