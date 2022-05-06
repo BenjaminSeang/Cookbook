@@ -29,6 +29,15 @@ class Recipe:
         for row in results:
             all_recipes.append(cls(row))
         return all_recipes
+    
+    @classmethod
+    def get_all_contains(cls, data):
+        query = "SELECT * FROM recipes WHERE INSTR(ingredients, %(keyword)s) > 0"
+        results = connectToMySQL(cls.db_name).query_db(query,data)
+        search_results = []
+        for row in results:
+            search_results.append(cls(row))
+        return search_results
 
     @classmethod
     def get_by_id(cls,data):

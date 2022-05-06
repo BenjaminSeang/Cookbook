@@ -24,19 +24,31 @@
     <h2 class="text-primary text-center">Cookbook</h2>
     <div class="col-5 mx-auto">
         <nav class="navbar navbar-light bg-light">
-            <form class="form-inline">
+            <form class="form-inline" action="/search" method="post">
                 <div class="input-group">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="search for ingredients" aria-label="Search" name="keyword">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
                 </div>
             </form>
         </nav>
+        {% if keyword %}
+        <div style="display:flex">
+            <div>
+                <p style="margin-top: 7px">Recipes contain: {{ keyword }}</p>
+            </div>
+            <div>
+                <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:10px" type="submit"
+                    onclick="location.href = '/'">Reset</button> 
+            </div>
+        </div>
+        {% endif %}
+        
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Recipe By</th>
-                    <th>Votes</th>
+                    <th>Recipe</th>
+                    <th>Created By</th>
+                    <th>Likes</th>
                 </tr>
             </thead>
             <tbody>

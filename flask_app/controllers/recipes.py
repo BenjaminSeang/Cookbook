@@ -53,8 +53,6 @@ def update_recipe():
 
 @app.route('/show/<int:id>')
 def show_recipe(id):
-    #if 'user_id' not in session:
-        #return redirect('/logout')
     data = {
         "id":id
     }
@@ -74,9 +72,14 @@ def delete_recipe(id):
 
 @app.route('/')
 def homepage():
-    #if 'user_id' not in session:
-        #return redirect('/logout')
     return render_template("homepage.html", recipes=Recipe.get_all(), users=User.get_all())
+
+@app.route('/search', methods=['POST', 'GET'])
+def search():
+    data = {
+        "keyword": request.form["keyword"],  
+    }
+    return render_template("homepage.html", keyword = data["keyword"], recipes=Recipe.get_all_contains(data), users=User.get_all())
 
 @app.route('/vote/<int:id>')
 def vote(id):
