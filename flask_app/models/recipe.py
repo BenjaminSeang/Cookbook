@@ -66,10 +66,16 @@ class Recipe:
         if len(recipe['name']) < 1:
             is_valid = False
             flash("Name is required","recipe")
-        if len(recipe['filling']) < 1:
+        if len(recipe['description']) < 1:
             is_valid = False
-            flash("Filling is required","recipe")
-        if len(recipe['crust']) < 1:
+            flash("Description is required","recipe")
+        if len(recipe['instruction']) < 1:
             is_valid = False
-            flash("Crust is required","recipe")
+            flash("Instruction is required","recipe")
+        if len(recipe['difficulty']) < 1:
+            is_valid = False
+            flash("Difficulty is required","recipe")
+        if len(recipe['ingredients']) < 1:
+            is_valid = False
+            flash("Ingredients is required","recipe")
         return is_valid

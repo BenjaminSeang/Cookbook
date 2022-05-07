@@ -16,6 +16,10 @@ def new_recipe():
 def create_recipe():
     if 'user_id' not in session:
         return redirect('/logout')
+
+    if not Recipe.validate_recipe(request.form):
+        return redirect('/new/recipe')
+
     data = {
         "name": request.form["name"],
         "description": request.form["description"],
@@ -40,6 +44,7 @@ def edit_recipe(id):
 def update_recipe():
     if 'user_id' not in session:
         return redirect('/logout')
+
     data = {
         "id":request.form["id"],
         "name": request.form["name"],
@@ -48,6 +53,12 @@ def update_recipe():
         "ingredients": request.form["ingredients"],
         "difficulty": request.form["difficulty"],
     }
+
+    if not Recipe.validate_recipe(request.form):
+        id = request.form["id"]
+        url = '/edit/recipe/' + id
+        return redirect(url)
+
     Recipe.update(data)
     return redirect('/dashboard')
 
