@@ -32,7 +32,7 @@ class Recipe:
     
     @classmethod
     def get_all_contains(cls, data):
-        query = "SELECT * FROM recipes WHERE INSTR(ingredients, %(keyword)s) > 0"
+        query = "SELECT * FROM recipes WHERE INSTR(name, %(keyword)s) > 0"
         results = connectToMySQL(cls.db_name).query_db(query,data)
         search_results = []
         for row in results:
