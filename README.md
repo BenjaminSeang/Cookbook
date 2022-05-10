@@ -6,5 +6,7 @@ Use MySQL Workbench to open the cookbook_db.mwb file in the root folder of the p
 2. Virtual Environment
 Open the root folder of the program in an IDE of your choice (we used visual studio code.) Use command pipenv shell to start a virtual environment.
 
-3. Start The Application 
+3. Edit the mysqlconnection.py file and change the MySQL connection credentials to match your local MySQL server configuration.
+
+4. Start The Application 
 Use command python server.py to start the application. Then open your browser and go to http://localhost:5000/ to see the running application.
