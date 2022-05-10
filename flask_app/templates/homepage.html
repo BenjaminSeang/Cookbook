@@ -42,31 +42,30 @@
             </div>
         </div>
         {% endif %}
-        
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Recipe</th>
-                    <th>Created By</th>
-                    <th>Likes</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for recipe in recipes %}
-                    <tr>
-                        <td><a href='/show/{{recipe.id}}'>{{recipe.name}}</a></td>
-                        <td>
-                            {% for user in users %}
-                                {% if user.id == recipe.user_id %}
-                                    {{user.username}}
-                                {% endif %}
-                            {% endfor %}
-                        </td>
-                        <td>{{recipe.vote}}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="d-flex align-items-stretch ">
+            {% for recipe in recipes %}
+                <div class="card" style="width: 18rem;">
+                    <img src={{recipe.img}} class="card-img-top" alt="Card image cap">
+                    <div class="card-body">
+                        <a href="/show/{{recipe.id}}">
+                            <h5 class="card-title text-center">{{recipe.name}}</h5>
+                        </a>
+                        <p class="card-text text-center">{{recipe.description}}</p>
+                        {% for user in users %}
+                            {% if user.id == recipe.user_id %}
+                                <p class="card-text text-center">Made by: {{user.username}}</p>
+                            {% endif %}
+                        {% endfor %}
+                        <p class="card-text text-center">Likes: {{recipe.vote}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
     </div>
         
 </body>

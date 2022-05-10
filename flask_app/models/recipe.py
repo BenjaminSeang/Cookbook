@@ -10,6 +10,7 @@ class Recipe:
         self.description = db_data['description']
         self.instruction = db_data['instruction']
         self.difficulty = db_data['difficulty']
+        self.img = db_data['img']
         self.vote = db_data['vote']
         self.ingredients = db_data['ingredients']
         self.user_id = db_data['user_id']
@@ -18,7 +19,7 @@ class Recipe:
     
     @classmethod
     def save(cls,data):
-        query = "INSERT INTO recipes (name, description, instruction, ingredients, difficulty, user_id) VALUES (%(name)s, %(description)s, %(instruction)s, %(ingredients)s, %(difficulty)s, %(user_id)s);"
+        query = "INSERT INTO recipes (name, description, instruction, ingredients, difficulty, img, user_id) VALUES (%(name)s, %(description)s, %(instruction)s, %(ingredients)s, %(difficulty)s, %(img)s, %(user_id)s);"
         return connectToMySQL(cls.db_name).query_db(query,data)
 
     @classmethod

@@ -11,7 +11,7 @@
     <div class="d-flex justify-content-around">    
         <form action="/login" method="post" class="col-4 p-4 bg-dark text-light">
             <h2 class="text-primary">Login</h2>
-            <a href="/registerpage" >No account? Register Now!</a>
+            <a href="/registerpage">New user? Register Now!</a>
             {% with messages = get_flashed_messages(category_filter=['login']) %}
                 {% if messages %}
                 <div class="alert alert-danger" role="alert">

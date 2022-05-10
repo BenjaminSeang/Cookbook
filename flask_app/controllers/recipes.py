@@ -26,6 +26,7 @@ def create_recipe():
         "instruction": request.form["instruction"],
         "ingredients": request.form["ingredients"],
         "difficulty": request.form["difficulty"],
+        "img": request.form["img"],
         "user_id": session["user_id"]
     }
     Recipe.save(data)
